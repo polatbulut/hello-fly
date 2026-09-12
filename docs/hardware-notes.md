@@ -107,6 +107,45 @@ aborts if one did. Keep `/usr/lib/wsl/lib` on `LD_LIBRARY_PATH`.
 
 ---
 
+## 3b. GeNN and Brian2CUDA on Pascal
+
+Both work. Neither needed an architecture flag.
+
+**PyGeNN 5.4.0** — verified building and executing `sm_61`:
+
+```
+backends compiled in : ['cuda', 'single_threaded_cpu']
+generated makefile   : -arch sm_61
+generated runner     : librunner.1.sm_61.cubin
+1000 timesteps       : t=100.0 ms, V finite
+```
+
+Notes that cost time:
+
+- **PyGeNN is not on PyPI** (`/pypi/pygenn/json` 404). Install from the GitHub
+  archive: `pip install https://github.com/genn-team/genn/archive/refs/tags/5.4.0.zip`.
+- **`libffi-dev` is a hard build requirement** and the failure is opaque:
+  `pkgconfig.pkgconfig.PackageNotFoundError: libffi not found` during
+  `get_requires_for_build_wheel`. Also install `libssl-dev` and `swig`.
+- **`CUDA_PATH` must be exported BEFORE `pip install`.** `setup.py` gates the
+  entire CUDA backend on it, and without it you get a silently **CPU-only**
+  build with no error. Check with
+  `list(pygenn.genn_model.backend_modules)` — it must contain `'cuda'`.
+- **`CUDA_PATH` must also be set at RUNTIME.** GeNN shells out to `nvcc` per
+  model and the backend Makefile hard-errors without it.
+- **The backend name is lowercase `'cuda'`.** `GeNNModel(..., backend="CUDA")`
+  raises `KeyError: 'CUDA'`.
+- **No arch flag exists or is needed.** `backend.cc` builds the target from the
+  live device: `"sm_" + major + minor`, so a 1080 Ti gets `-arch sm_61`
+  automatically. GeNN JIT-compiles per model, so a prebuilt wheel needs no
+  Pascal kernels of its own.
+
+**Brian2CUDA 1.0b1** imports and reports `minimal_compute_capability = 5.0`, so
+6.1 passes. It hard-pins `brian2==2.10.1` (exact `==`), which is why it lives in
+its own conda env rather than alongside torch.
+
+---
+
 ## 4. WSL2 configuration
 
 `.wslconfig` (Windows side, `%USERPROFILE%\.wslconfig`):

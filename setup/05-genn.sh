@@ -52,7 +52,7 @@ try:
     import pygenn
     print("  pygenn", getattr(pygenn, "__version__", "?"))
     from pygenn import GeNNModel
-    m = GeNNModel("float", "archcheck", backend="CUDA")
+    m = GeNNModel("float", "archcheck", backend="cuda")
     print("  CUDA backend constructed OK")
     # Build a trivial model so GeNN actually shells out to nvcc. This is the
     # real test: it proves codegen + compile + load works for sm_61.
