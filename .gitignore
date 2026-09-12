@@ -1,0 +1,29 @@
+# connectome data - large, fetched via git-lfs from upstream, never committed here
+data/raw/
+data/cache/
+*.parquet
+*.pkl
+*.csv.gz
+weight_csr*
+
+# simulation output
+out/
+results/
+*.mp4
+*.png
+!docs/img/*.png
+
+# python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+*.egg-info/
+
+# conda/env
+miniforge3/
+
+# editors / os
+.vscode/
+.idea/
+.DS_Store

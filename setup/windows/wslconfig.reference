@@ -1,0 +1,22 @@
+# WSL2 configuration for the fly-loop project
+# Host: 16 GB RAM, i7-8700K (12 threads), GTX 1080 Ti
+#
+# memory=12GB is deliberate and was requested: the FlyWire v783 connectome
+# plus a MuJoCo physics process does not fit comfortably in WSL2's default
+# (half of host RAM = 8 GB). It leaves ~4 GB for Windows, which is tight.
+# If the Windows desktop starts thrashing, drop this to 10GB first.
+
+[wsl2]
+memory=12GB
+processors=10
+swap=8GB
+localhostForwarding=true
+
+# Reclaim freed guest memory back to Windows instead of holding it.
+# Important on a 16 GB host: without this the WSL VM's working set only ever
+# grows, and Windows ends up starved after a long simulation run.
+[experimental]
+autoMemoryReclaim=gradual
+# sparseVhd deliberately NOT enabled: WSL 2.7 refuses it and warns of potential
+# data corruption. Forcing it needs --allow-unsafe; not worth it to reclaim disk
+# on a 742 GB volume.
