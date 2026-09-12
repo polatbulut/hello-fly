@@ -1,0 +1,84 @@
+{
+  "design": {
+    "seconds": 2.0,
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "swap_orn": true,
+    "calibration": {
+      "intercept": 57.599999999999994,
+      "slope": 8.599999999999994
+    }
+  },
+  "episodes": {
+    "srcL|0": {
+      "source": "srcL",
+      "seed": 0,
+      "net_y": 5.887736618053168,
+      "dist_start": 25.041734133675376,
+      "dist_end": 27.980515869106647,
+      "mean_bias": -0.3880757944737684,
+      "mean_dn_l": 58.40024477958679,
+      "mean_dn_r": 4.899969706833363
+    },
+    "srcL|1": {
+      "source": "srcL",
+      "seed": 1,
+      "net_y": 8.529471448622644,
+      "dist_start": 25.042318363792827,
+      "dist_end": 24.08239541704332,
+      "mean_bias": -0.5715961649290239,
+      "mean_dn_l": 53.38009371757507,
+      "mean_dn_r": 0.9716167168691754
+    },
+    "srcL|2": {
+      "source": "srcL",
+      "seed": 2,
+      "net_y": 6.504581107757986,
+      "dist_start": 25.04216126909721,
+      "dist_end": 19.673902361102968,
+      "mean_bias": -0.45347002623247074,
+      "mean_dn_l": 54.732343130111694,
+      "mean_dn_r": 1.806092669814825
+    },
+    "srcR|0": {
+      "source": "srcR",
+      "seed": 0,
+      "net_y": 21.305550472810864,
+      "dist_start": 25.048913363055725,
+      "dist_end": 40.80971751341334,
+      "mean_bias": 0.09797686753626028,
+      "mean_dn_l": 58.598038034439085,
+      "mean_dn_r": 0.0
+    },
+    "srcR|1": {
+      "source": "srcR",
+      "seed": 1,
+      "net_y": -16.22871966008097,
+      "dist_start": 25.049113749617373,
+      "dist_end": 34.23214697543796,
+      "mean_bias": -0.34707560653591,
+      "mean_dn_l": 55.26850049972534,
+      "mean_dn_r": 1.3761237847059966
+    },
+    "srcR|2": {
+      "source": "srcR",
+      "seed": 2,
+      "net_y": 14.9921375666745,
+      "dist_start": 25.049353932928387,
+      "dist_end": 41.43291855942363,
+      "mean_bias": 0.4086962451225326,
+      "mean_dn_l": 61.76374738693237,
+      "mean_dn_r": 0.0
+    }
+  },
+  "swapped_mirror_delta_mm": 0.2842735983431339,
+  "intact_mirror_delta_mm": 14.15,
+  "pooled_sd": 14.244536917235337,
+  "effect_size": 0.01995667532014845,
+  "inverted": false,
+  "verdict": "PARTIAL: crossing the wiring destroys the steering without cleanly inverting it. Consistent with the connectome carrying the signal, but the signal is too noisy to show a clean sign flip at this episode count.",
+  "wall_min": 9.3408528549
+}

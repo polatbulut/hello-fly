@@ -1,0 +1,298 @@
+{
+  "device": "NVIDIA GeForce GTX 1080 Ti",
+  "torch": "2.14.0+cu126",
+  "dt_ms": 0.1,
+  "n_neurons": 138639,
+  "setup_s": 10.82,
+  "trial": {
+    "duration_ms": 1000.0,
+    "wall_s": 17.17,
+    "spikes": 17393,
+    "active_neurons": 403,
+    "anchor": {
+      "spikes": [
+        16353,
+        17429
+      ],
+      "active": [
+        380,
+        416
+      ]
+    },
+    "spikes_within_anchor": true,
+    "active_within_anchor": true
+  },
+  "motor_neurons": {
+    "MN9_contra (paper, v783 side=right)": {
+      "root_id": 720575940660219265,
+      "index": 138332,
+      "spikes": 100,
+      "rate_hz": 100.0
+    },
+    "MN9_other  (other CB0701 in v783)": {
+      "root_id": 720575940618238523,
+      "index": 34268,
+      "spikes": 63,
+      "rate_hz": 63.0
+    }
+  },
+  "top_active": [
+    {
+      "neuron_index": 126873,
+      "flywire_id": 720575940639332736,
+      "spikes": 218,
+      "rate_hz": 218.0,
+      "is_stimulated_GRN": true
+    },
+    {
+      "neuron_index": 28825,
+      "flywire_id": 720575940616885538,
+      "spikes": 217,
+      "rate_hz": 217.0,
+      "is_stimulated_GRN": true
+    },
+    {
+      "neuron_index": 122795,
+      "flywire_id": 720575940637568838,
+      "spikes": 216,
+      "rate_hz": 216.0,
+      "is_stimulated_GRN": true
+    },
+    {
+      "neuron_index": 100605,
+      "flywire_id": 720575940630797113,
+      "spikes": 215,
+      "rate_hz": 215.0,
+      "is_stimulated_GRN": true
+    },
+    {
+      "neuron_index": 129730,
+      "flywire_id": 720575940640649691,
+      "spikes": 211,
+      "rate_hz": 211.0,
+      "is_stimulated_GRN": true
+    },
+    {
+      "neuron_index": 92298,
+      "flywire_id": 720575940629176663,
+      "spikes": 211,
+      "rate_hz": 211.0,
+      "is_stimulated_GRN": true
+    },
+    {
+      "neuron_index": 32863,
+      "flywire_id": 720575940617937543,
+      "spikes": 210,
+      "rate_hz": 210.0,
+      "is_stimulated_GRN": true
+    },
+    {
+      "neuron_index": 124291,
+      "flywire_id": 720575940638202345,
+      "spikes": 208,
+      "rate_hz": 208.0,
+      "is_stimulated_GRN": true
+    },
+    {
+      "neuron_index": 29281,
+      "flywire_id": 720575940617000768,
+      "spikes": 205,
+      "rate_hz": 205.0,
+      "is_stimulated_GRN": true
+    },
+    {
+      "neuron_index": 69093,
+      "flywire_id": 720575940624963786,
+      "spikes": 204,
+      "rate_hz": 204.0,
+      "is_stimulated_GRN": true
+    },
+    {
+      "neuron_index": 51107,
+      "flywire_id": 720575940621754367,
+      "spikes": 204,
+      "rate_hz": 204.0,
+      "is_stimulated_GRN": true
+    },
+    {
+      "neuron_index": 108426,
+      "flywire_id": 720575940632425919,
+      "spikes": 204,
+      "rate_hz": 204.0,
+      "is_stimulated_GRN": true
+    },
+    {
+      "neuron_index": 110469,
+      "flywire_id": 720575940632889389,
+      "spikes": 201,
+      "rate_hz": 201.0,
+      "is_stimulated_GRN": true
+    },
+    {
+      "neuron_index": 90589,
+      "flywire_id": 720575940628853239,
+      "spikes": 197,
+      "rate_hz": 197.0,
+      "is_stimulated_GRN": true
+    },
+    {
+      "neuron_index": 126600,
+      "flywire_id": 720575940639198653,
+      "spikes": 195,
+      "rate_hz": 195.0,
+      "is_stimulated_GRN": true
+    },
+    {
+      "neuron_index": 49584,
+      "flywire_id": 720575940621502051,
+      "spikes": 191,
+      "rate_hz": 191.0,
+      "is_stimulated_GRN": true
+    },
+    {
+      "neuron_index": 12494,
+      "flywire_id": 720575940611875570,
+      "spikes": 188,
+      "rate_hz": 188.0,
+      "is_stimulated_GRN": true
+    },
+    {
+      "neuron_index": 126752,
+      "flywire_id": 720575940639259967,
+      "spikes": 182,
+      "rate_hz": 182.0,
+      "is_stimulated_GRN": true
+    },
+    {
+      "neuron_index": 14842,
+      "flywire_id": 720575940612670570,
+      "spikes": 179,
+      "rate_hz": 179.0,
+      "is_stimulated_GRN": true
+    },
+    {
+      "neuron_index": 111357,
+      "flywire_id": 720575940633143833,
+      "spikes": 172,
+      "rate_hz": 172.0,
+      "is_stimulated_GRN": true
+    },
+    {
+      "neuron_index": 97602,
+      "flywire_id": 720575940630233916,
+      "spikes": 171,
+      "rate_hz": 171.0,
+      "is_stimulated_GRN": true
+    },
+    {
+      "neuron_index": 56459,
+      "flywire_id": 720575940622695448,
+      "spikes": 154,
+      "rate_hz": 154.0,
+      "is_stimulated_GRN": false
+    },
+    {
+      "neuron_index": 95808,
+      "flywire_id": 720575940629888530,
+      "spikes": 143,
+      "rate_hz": 143.0,
+      "is_stimulated_GRN": false
+    },
+    {
+      "neuron_index": 33909,
+      "flywire_id": 720575940618165019,
+      "spikes": 139,
+      "rate_hz": 139.0,
+      "is_stimulated_GRN": false
+    },
+    {
+      "neuron_index": 100978,
+      "flywire_id": 720575940630868793,
+      "spikes": 138,
+      "rate_hz": 138.0,
+      "is_stimulated_GRN": false
+    },
+    {
+      "neuron_index": 82138,
+      "flywire_id": 720575940627383685,
+      "spikes": 137,
+      "rate_hz": 137.0,
+      "is_stimulated_GRN": false
+    },
+    {
+      "neuron_index": 95222,
+      "flywire_id": 720575940629778554,
+      "spikes": 131,
+      "rate_hz": 131.0,
+      "is_stimulated_GRN": false
+    },
+    {
+      "neuron_index": 41254,
+      "flywire_id": 720575940619973712,
+      "spikes": 125,
+      "rate_hz": 125.0,
+      "is_stimulated_GRN": false
+    },
+    {
+      "neuron_index": 129625,
+      "flywire_id": 720575940640589171,
+      "spikes": 122,
+      "rate_hz": 122.0,
+      "is_stimulated_GRN": false
+    },
+    {
+      "neuron_index": 75279,
+      "flywire_id": 720575940626191306,
+      "spikes": 116,
+      "rate_hz": 116.0,
+      "is_stimulated_GRN": false
+    }
+  ],
+  "benchmark": [
+    {
+      "batch": 1,
+      "wall_s_for_200ms": 1.74,
+      "sim_ms_per_wall_s": 115.0,
+      "realtime_ratio": 0.115,
+      "ms_per_step": 0.87,
+      "aggregate_sim_ms_per_wall_s": 115.0,
+      "vram_gb": 1.45
+    },
+    {
+      "batch": 4,
+      "wall_s_for_200ms": 13.922,
+      "sim_ms_per_wall_s": 14.4,
+      "realtime_ratio": 0.0144,
+      "ms_per_step": 6.961,
+      "aggregate_sim_ms_per_wall_s": 57.5,
+      "vram_gb": 1.55
+    },
+    {
+      "batch": 8,
+      "wall_s_for_200ms": 46.872,
+      "sim_ms_per_wall_s": 4.3,
+      "realtime_ratio": 0.0043,
+      "ms_per_step": 23.436,
+      "aggregate_sim_ms_per_wall_s": 34.1,
+      "vram_gb": 1.71
+    },
+    {
+      "batch": 16,
+      "wall_s_for_200ms": 155.97,
+      "sim_ms_per_wall_s": 1.3,
+      "realtime_ratio": 0.0013,
+      "ms_per_step": 77.985,
+      "aggregate_sim_ms_per_wall_s": 20.5,
+      "vram_gb": 2.0
+    },
+    {
+      "batch": 32,
+      "wall_s_for_200ms": 416.053,
+      "sim_ms_per_wall_s": 0.5,
+      "realtime_ratio": 0.0005,
+      "ms_per_step": 208.027,
+      "aggregate_sim_ms_per_wall_s": 15.4,
+      "vram_gb": 2.55
+    }
+  ]
+}

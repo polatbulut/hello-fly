@@ -1,15 +1,22 @@
-# connectome data - large, fetched via git-lfs from upstream, never committed here
+# upstream clone -- setup/06-clone-flybrain.sh recreates it, and it carries its
+# own .git, so committing it produces a stray gitlink rather than real content
+external/
+
+# connectome data + derived caches (~700 MB), fetched from upstream
 data/raw/
 data/cache/
+data/flywire_v783/
 *.parquet
 *.pkl
 *.csv.gz
 weight_csr*
+weight_coo*
 
-# simulation output
-out/
-results/
+# simulation output. NOTE the leading slash: a bare `out/` or `results/` would
+# also swallow docs/results/, which holds the JSON result data we DO want.
+/out/
 *.mp4
+*.npz
 *.png
 !docs/img/*.png
 
@@ -19,8 +26,6 @@ __pycache__/
 .ipynb_checkpoints/
 .venv/
 *.egg-info/
-
-# conda/env
 miniforge3/
 
 # editors / os

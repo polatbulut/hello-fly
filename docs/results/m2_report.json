@@ -1,0 +1,74 @@
+{
+  "flygym_version": "1.2.1",
+  "timestep_s": 0.0001,
+  "obs_keys": [
+    "cardinal_vectors",
+    "contact_forces",
+    "end_effectors",
+    "fly",
+    "fly_orientation",
+    "joints",
+    "odor_intensity"
+  ],
+  "odor_intensity_shape": "(n_odor_dims=2, n_sensors=4)",
+  "action_space": "Box(-0.5, 1.5, (2,), float32)  # [left_drive, right_drive]",
+  "sensor_order": {
+    "left_indices": [
+      0,
+      2
+    ],
+    "right_indices": [
+      1,
+      3
+    ],
+    "method": "moved the odour source to +y and -y and compared readings",
+    "raw": {
+      "left": {
+        "intensities": [
+          0.010548960417509079,
+          0.00936364009976387,
+          0.010060553438961506,
+          0.00972536951303482
+        ],
+        "argmax": 0
+      },
+      "right": {
+        "intensities": [
+          0.00936364009976387,
+          0.010548960417509079,
+          0.00972536951303482,
+          0.010060553438961506
+        ],
+        "argmax": 1
+      }
+    }
+  },
+  "straight_heading_deg": 10.325345039367676,
+  "turning": {
+    "left  [0.4, 1.2]": {
+      "heading_deg": 122.70777130126953,
+      "net_y": 5.475340843200684
+    },
+    "right [1.2, 0.4]": {
+      "heading_deg": -115.69982147216797,
+      "net_y": -5.373549461364746
+    }
+  },
+  "turning_signs_opposite": true,
+  "taxis_control": {
+    "source_xy": [
+      25.0,
+      12.0
+    ],
+    "dist_start": 27.712861617648862,
+    "dist_end": 10.781069465246267,
+    "got_closer": true,
+    "gain": 3.0
+  },
+  "videos": [
+    "m2_odor_taxis_control.mp4",
+    "m2_turn_left.mp4",
+    "m2_turn_right.mp4",
+    "m2_walk_straight.mp4"
+  ]
+}

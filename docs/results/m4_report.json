@@ -1,0 +1,74 @@
+{
+  "episodes": {
+    "srcL": {
+      "net_y": 12.798086063936353,
+      "mean_bias": -0.10773493495446478,
+      "mean_contrast": -0.006493035358331114,
+      "dist_start": 25.041775027908603,
+      "dist_end": 4.471840162646806,
+      "got_closer": true,
+      "dn_l": 60.35656574885051,
+      "dn_r": 3.7806919682522615
+    },
+    "srcR": {
+      "net_y": -14.12313097761944,
+      "mean_bias": -0.0030578717734811535,
+      "mean_contrast": 0.006426738595437578,
+      "dist_start": 25.048674271496385,
+      "dist_end": 12.610825377588169,
+      "got_closer": true,
+      "dn_l": 59.061631196339924,
+      "dn_r": 1.765037421832482
+    }
+  },
+  "mirror_test": {
+    "delta_net_y_mm": 26.921217041555792,
+    "delta_bias": -0.10467706318098362,
+    "odour_dependent": true
+  },
+  "calibration": {
+    "intercept_hz": 57.599999999999994,
+    "slope_hz_per_contrast": 8.599999999999994,
+    "r2": 0.7302527646129553,
+    "contrasts": [
+      -1.0,
+      -0.5,
+      0.0,
+      0.5,
+      1.0
+    ],
+    "asym_hz": [
+      46.0,
+      54.0,
+      60.0,
+      67.0,
+      61.0
+    ]
+  },
+  "params": {
+    "orn_rate_max": 200.0,
+    "intensity_to_hz": 40000.0,
+    "contrast_gain": 55.0,
+    "dn_baseline_asym": 57.599999999999994,
+    "dn_asym_scale": 8.599999999999994,
+    "readout_tau_ms": 400.0,
+    "turn_gain": 0.8,
+    "base_drive": 1.0,
+    "action_clip": [
+      -0.5,
+      1.5
+    ],
+    "exchange_hz": 200.0
+  },
+  "wall_s": 232.43886539899995,
+  "dist_start": 25.041775027908603,
+  "dist_end": 4.471840162646806,
+  "got_closer": true,
+  "mean_bias": -0.10773493495446478,
+  "video": "/home/polat/fly-loop/out/m4_srcL_fly.mp4",
+  "subset_decision": {
+    "chose": "full 139k brain",
+    "why": "M1 measured 115 sim-ms per wall-second at batch=1 using 1.45/11 GB VRAM, so a 2.5 s episode costs ~22 s of brain compute. A hop<=3 subset (~42,400 neurons) would buy ~3x while discarding ~11% of DNa02 input and requiring its own validation against the full model. Not worth it at this episode length.",
+    "batch": "1 (batching is counterproductive: batch=4 is 8x slower in absolute wall clock than batch=1 on this GPU)"
+  }
+}
