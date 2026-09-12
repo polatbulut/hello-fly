@@ -126,8 +126,17 @@ def calibrate(brain, dn_cols, p: BridgeParams, ms=500.0, trials=2):
 # ---------------------------------------------------------------------- loop
 def run_closed_loop(p: BridgeParams, seconds=2.5, odor_source=((22.0, 11.0, 1.5),),
                     silence_ids=None, label="m4", seed=0, brain=None,
-                    calib=None, render=True):
-    """Run the closed loop. Returns a dict of traces."""
+                    calib=None, render=True, swap_orn=False):
+    """Run the closed loop. Returns a dict of traces.
+
+    swap_orn : cross the sensory wiring -- the LEFT antenna's odour drives the
+        RIGHT ORN population and vice versa. Everything downstream is untouched.
+        If the connectome is genuinely carrying the lateralisation, this must
+        INVERT the steering (the fly turns away from the odour) and flip the
+        sign of the mirror difference. Unlike the silencing ablation, this
+        control CAN fail while still producing movement, so a sign flip is real
+        evidence rather than a structural guarantee.
+    """
     orn_l = NEURONS["ORN"]["left"]["root_ids"]
     orn_r = NEURONS["ORN"]["right"]["root_ids"]
     dn_ids = [NEURONS["DN"]["DNa02"]["left"]["root_ids"][0],
@@ -141,6 +150,8 @@ def run_closed_loop(p: BridgeParams, seconds=2.5, odor_source=((22.0, 11.0, 1.5)
     dn_cols = torch.as_tensor(brain.idx(dn_ids), device="cuda")
     li = torch.as_tensor(brain.idx(orn_l), device="cuda")
     ri = torch.as_tensor(brain.idx(orn_r), device="cuda")
+    if swap_orn:
+        li, ri = ri, li      # cross the sensory wiring; see docstring
 
     silenced = brain.silence(silence_ids) if silence_ids else brain.unsilence()
 
