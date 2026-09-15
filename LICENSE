@@ -19,24 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-
-NOTE ON SCOPE
-
-This licence covers the code in this repository only.
-
-It does NOT cover, and this repository does not redistribute:
-
-  * The FlyWire FAFB v783 connectome (Dorkenwald et al.; Schlegel et al.).
-    Downloaded at runtime by m3_neurons.py and setup/06-clone-flybrain.sh.
-    Subject to FlyWire's own terms and citation requirements.
-
-  * The leaky integrate-and-fire brain model of Shiu et al., Nature
-    634:210-219 (2024), and the eonsystemspbc/fly-brain implementation it is
-    used through. Subject to their respective licences.
-
-  * FlyGym / NeuroMechFly (NeLy-EPFL), installed via pip. Subject to its own
-    licence.
-
-If you use this work, cite the upstream sources, not just this repository.

@@ -283,8 +283,11 @@ setup/windows/toggle-hypervisor.ps1 -Mode Auto   # WSL2;   reboot
 
 ---
 
-## Provenance
+## Provenance and licensing
 
-Connectome data is FlyWire v783 (Dorkenwald et al.; Schlegel et al.). The LIF
-model follows Shiu et al., *Nature* 2024. Respect the upstream licences and
-citation requirements of both.
+Code in this repository is MIT (see `LICENSE`).
+
+It does **not** redistribute the FlyWire v783 connectome, the Shiu et al. brain
+model, or FlyGym — all are fetched at install/run time and carry their own terms.
+**[`NOTICE.md`](NOTICE.md) lists what to cite**; the substantive scientific
+contributions here are upstream, not mine.
