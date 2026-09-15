@@ -1,0 +1,37 @@
+{
+  "brain_step_ms": 1.0005804999991597,
+  "brain_components_ms": {
+    "bernoulli(rates)*scale": 0.031121499999926527,
+    "matmul(spikes, W.T)  [sparse CSR]": 0.6870659999992768,
+    "  W.transpose(0,1) alone": 0.004586400000334834,
+    "torch.roll(delay_buffer)": 0.07987500000012915,
+    "conductance arithmetic": 0.03958450000027369,
+    "LIF v update + threshold": 0.08988599999952385,
+    "torch.where(refrac)": 0.04357099999992897
+  },
+  "recording_ms": {
+    "index_select(1, dn_cols)": 0.009130999999342748,
+    "advanced index sp[:, dn_cols]": 0.013471500000150627,
+    "raster[k] = d[0]": 0.009858000000804168,
+    "counts += d": 0.004797499999540378
+  },
+  "recording_total_ms": 0.023786499999687294,
+  "sync_ms": {
+    ".cpu() on (1,4)": 0.04163600000083534,
+    ".item() on a scalar": 0.0706329999979971,
+    "torch.cuda.synchronize()": 0.012173000000075263
+  },
+  "mujoco_step_ms": 3.463749329999549,
+  "render_ms": 99.56818326666811,
+  "budget_ms": {
+    "brain steps (50x)": 50.02902499995798,
+    "  of which torch.roll": 3.9937500000064574,
+    "  of which sparse matmul": 34.35329999996384,
+    "per-step recording (50x)": 1.1893249999843647,
+    "physics steps (50x)": 173.18746649997746,
+    "render (1x)": 99.56818326666811,
+    "host sync (1x)": 0.04163600000083534
+  },
+  "exchange_total_ms": 324.01563576658873,
+  "realtime_factor": 0.0154313540708321
+}
