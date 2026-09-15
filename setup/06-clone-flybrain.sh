@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# Clone the fly-brain multi-backend connectome repo (Git LFS) into ~/fly-loop/external.
+# Clone the fly-brain multi-backend connectome repo (Git LFS) into ~/hello-fly/external.
 set -euo pipefail
 
-EXT="$HOME/fly-loop/external"
+EXT="$HOME/hello-fly/external"
 mkdir -p "$EXT"
 cd "$EXT"
 

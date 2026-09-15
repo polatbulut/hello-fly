@@ -19,7 +19,7 @@ python -m pip install "flygym==1.2.1"
 
 echo
 echo "=== did installing flygym break torch? (re-run the Pascal gate) ==="
-python "$HOME/fly-loop/setup/pascal_gate.py" || echo "!!! GATE REGRESSED !!!"
+python "$HOME/hello-fly/setup/pascal_gate.py" || echo "!!! GATE REGRESSED !!!"
 
 echo
 echo "=== versions ==="

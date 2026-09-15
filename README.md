@@ -1,4 +1,4 @@
-# fly-loop
+# hello-fly
 
 A closed-loop simulated *Drosophila*: a connectome-derived spiking brain driving a
 biomechanical body, doing odour-driven walking.

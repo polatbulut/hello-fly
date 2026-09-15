@@ -65,7 +65,7 @@
   "dist_end": 4.471840162646806,
   "got_closer": true,
   "mean_bias": -0.10773493495446478,
-  "video": "/home/polat/fly-loop/out/m4_srcL_fly.mp4",
+  "video": "/home/polat/hello-fly/out/m4_srcL_fly.mp4",
   "subset_decision": {
     "chose": "full 139k brain",
     "why": "M1 measured 115 sim-ms per wall-second at batch=1 using 1.45/11 GB VRAM, so a 2.5 s episode costs ~22 s of brain compute. A hop<=3 subset (~42,400 neurons) would buy ~3x while discarding ~11% of DNa02 input and requiring its own validation against the full model. Not worth it at this episode length.",

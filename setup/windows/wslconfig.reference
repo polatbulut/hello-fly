@@ -1,4 +1,4 @@
-# WSL2 configuration for the fly-loop project
+# WSL2 configuration for the hello-fly project
 # Host: 16 GB RAM, i7-8700K (12 threads), GTX 1080 Ti
 #
 # memory=12GB is deliberate and was requested: the FlyWire v783 connectome

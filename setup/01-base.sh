@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Base Ubuntu setup for the fly-loop project. Run as root inside WSL.
+# Base Ubuntu setup for the hello-fly project. Run as root inside WSL.
 set -euo pipefail
 
 USERNAME="polat"

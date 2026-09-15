@@ -164,7 +164,7 @@ its own conda env rather than alongside torch.
   Windows `python.exe`/`pip.exe` cannot shadow the conda env. A classic and very
   confusing source of "wrong python" bugs.
 
-**Put the repo in the ext4 filesystem (`~/fly-loop`), not `/mnt/c`.** The 9p
+**Put the repo in the ext4 filesystem (`~/hello-fly`), not `/mnt/c`.** The 9p
 bridge to the Windows filesystem is roughly an order of magnitude slower, and
 this project repeatedly reads a ~100 MB parquet and a ~290 MB weight cache.
 
