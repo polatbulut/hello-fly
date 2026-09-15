@@ -1,4 +1,4 @@
-# hello-fly
+# fly-loop
 
 A closed-loop simulated *Drosophila*: a connectome-derived spiking brain driving a
 biomechanical body, doing odour-driven walking.
@@ -106,6 +106,7 @@ this README should not be read as claiming one.
 | **M3** | Auditable ORN / DNa01 / DNa02 root IDs from a pinned v783 dump | done |
 | **M4** | Closed loop, decoupled rates, side-by-side video + DN raster | done |
 | **M5** | Ablation: silence DNa02, test whether odour-dependence dies | done |
+| **M6** | Optimisation pass + persistent multi-source world | done |
 
 ### M0 — the Pascal trap is real, but not where it is usually claimed
 
@@ -236,6 +237,120 @@ need more seeds or longer episodes.
 
 ---
 
+### M6 — making it fast enough to live in, and a world to live in
+
+**Every optimisation here is bit-exact and was verified before adoption.** The
+gate is M1: `FastBrain` reproduces it *exactly* — 17,393 spikes, 403 active
+neurons, the same numbers, not merely in band — and is step-for-step identical to
+the reference over 500 steps at a fixed seed.
+
+| change | measured | exact? |
+|---|---|---|
+| int32 CSR indices | 0.686 → 0.565 ms SpMV | 96/96 bit-identical |
+| ring-buffer delay line | 0.0733 → 0.0110 ms | 60/60 identical |
+| memoised `Fly.get_observation` | 3.306 → 2.743 ms/step | max\|Δ\| = 0.0 in qpos |
+| render moved out of the loop | −158 ms/exchange | output unchanged |
+| **closed loop** | **0.0137× → 0.0257×** | **1.88×** |
+
+#### Profiling overturned the obvious hypotheses
+
+Rendering is **43%** of the loop and physics **42%**; the brain is **14%**. So
+even an infinitely fast brain buys 1.16×. `torch.roll` — the intuitive
+suspect, copying 21 MB per timestep — is **1.2%**, and the per-step spike
+recording is **0.3%**. Both were "obviously" the bottleneck and neither is.
+
+Three measurement errors worth recording, since each looked like a result:
+
+- The first render benchmark timed **skipped frames**. `Camera.render()`
+  early-outs unless enough *simulated* time has passed (`camera.py:223`), so a
+  tight loop of `render()` calls mostly measures the early-out. Per frame
+  actually produced it is ~158 ms and **essentially independent of resolution**
+  (155.6 ms at 320×240 vs 158.7 at 640×480).
+  I then attributed that to dm_control overhead, on the strength of a bare
+  `mujoco.Renderer` managing 7.7–10.2 ms. **That was also wrong** — the toy
+  benchmark used a 3-geom box-and-plane model. On the actual 71-geom mesh fly,
+  a bare `mujoco.Renderer` costs **163 ms/frame** too. The expense is the
+  model's geometry, not dm_control and not rasterisation. Moving rendering off
+  the critical path is still worth 43%; it just does not get cheaper offline,
+  you only pay it for the frames you actually want.
+- `solver iterations=1000` (vs MuJoCo's default 100) looked alarming.
+  `solver_niter` is **2** — Newton converges in two. Irrelevant.
+- The first two attempts at the observation patch were **silent no-ops**:
+  patching the instance cannot intercept `super().get_observation()`, and
+  patching `Simulation` misses `post_step`, which calls `Fly` directly.
+
+#### Refused, deliberately
+
+FlyGym registers **2,268 collision pairs of which only 1,182 are unique** —
+`_init_self_contacts` de-duplicates on the *ordered* key `f"{geom1}_{geom2}"`,
+so both (A,B) and (B,A) are added. Removing the 1,086 duplicates would cut
+broad-phase work, but over 3,000 walking steps no duplicated pair was ever in
+contact, so the saving is unproven — and if legs ever *do* touch, removing one
+changes the contact force. That is a dynamics change, not an optimisation.
+Worth reporting upstream.
+
+#### The world
+
+`LivingWorldArena`: a wind-shaped Gaussian plume over N sources, depletable
+reserves with regrowth, and a **toroidal odour field by minimum image** — the fly
+is never teleported, so there is no discontinuity in the brain's input and no
+bound on lifetime. `OdorArena` already supports N sources × K dimensions; the
+subclass exists only because `diffuse_func` receives a scalar distance and
+therefore cannot express direction.
+
+Two traps handled: mutating `peak_odor_intensity` is a **silent no-op**
+(`get_olfaction` reads a cache built in `__init__`), and `calibrate_gain` pins the
+plume's on-axis intensity to the old r⁻² value at a reference radius — without
+it, swapping the field would quietly rescale `intensity_to_hz` and move the
+result while looking like a pure environment change.
+
+#### 60 s of fly life
+
+Path 1112.6 mm, closest approach to FOOD_B **14.8 mm from a start 83 mm away**,
+sensed odour up **10.4×**. Zero source visits — the feed radius is 3 mm.
+
+The stronger evidence is within-run. Across 12,000 exchanges, the correlation
+between inter-antennal odour contrast and steering bias is:
+
+```
+lag(exch)    0      60     100     140     200     300
+   r      -0.036  +0.106  +0.182  +0.187  +0.029  -0.089
+```
+
+**Peak r = +0.187 at lag 140, p = 0.016** (rotation permutation — shuffling
+would have manufactured a p-value, since both series are autocorrelated).
+
+#### …and the null control says that is not enough
+
+The odour-blind run (`--blind`) drives the ORNs with the same total rate and
+**zero** left/right contrast, so odour information cannot reach the DNs. I
+predicted its correlation "must be ~0 by construction". It is not:
+
+| | peak \|r\| | at lag | p |
+|---|---|---|---|
+| intact | 0.187 | 140 | 0.016 |
+| **blind** | **0.082** | 60 | 0.274 |
+
+The pre-registered bar was *intact > 3× blind*. 0.187 < 3 × 0.082, so **this
+fails, and the approach to FOOD_B should be read as drift, not taxis.**
+
+The null exposed a confound I had not thought of, and my "structurally zero"
+claim was simply wrong: **steering causes contrast.** Turning changes which
+antenna faces the gradient, so bias → heading → contrast is a feedback path that
+exists whether or not odour drives steering. Any correlation between bias and
+contrast is therefore bidirectional by construction.
+
+What remains suggestive but unproven: the intact fly's sensed odour rose
+**10.4×** against the blind fly's **1.5×**, and the lag profiles differ in shape
+(intact starts *negative* at lag 0 and rises to a delayed peak; blind starts
+positive and stays flat). Both are n=1 per condition. Settling it needs
+replicates, at ~39 min of wall clock each.
+
+**What this is not.** The fly has no valence machinery: "aversive" is a sign
+imposed in numpy, and depletion is arena bookkeeping the brain cannot perceive
+except as concentration. This is a persistent environment, not foraging — and on
+the current evidence, not demonstrated odour tracking either.
+
 ## Layout
 
 ```
@@ -283,11 +398,8 @@ setup/windows/toggle-hypervisor.ps1 -Mode Auto   # WSL2;   reboot
 
 ---
 
-## Provenance and licensing
+## Provenance
 
-Code in this repository is MIT (see `LICENSE`).
-
-It does **not** redistribute the FlyWire v783 connectome, the Shiu et al. brain
-model, or FlyGym — all are fetched at install/run time and carry their own terms.
-**[`NOTICE.md`](NOTICE.md) lists what to cite**; the substantive scientific
-contributions here are upstream, not mine.
+Connectome data is FlyWire v783 (Dorkenwald et al.; Schlegel et al.). The LIF
+model follows Shiu et al., *Nature* 2024. Respect the upstream licences and
+citation requirements of both.
