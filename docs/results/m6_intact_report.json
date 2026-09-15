@@ -1,0 +1,66 @@
+{
+  "seconds": 60.0,
+  "wall_min": 38.89926174656668,
+  "realtime_factor": 0.025707428755720844,
+  "speedup_vs_m4": 1.8764546537022513,
+  "blind": false,
+  "exchange_hz": 200.0,
+  "obs_builds_avoided_pct": 49.999958333368056,
+  "path_mm": 1112.6311334208804,
+  "sources": [
+    {
+      "label": "FOOD_A",
+      "pos": [
+        60.0,
+        55.0,
+        1.5
+      ],
+      "visits": 0,
+      "dwell_s": 0.0,
+      "consumed": 0.0
+    },
+    {
+      "label": "FOOD_B",
+      "pos": [
+        -70.0,
+        -45.0,
+        1.5
+      ],
+      "visits": 0,
+      "dwell_s": 0.0,
+      "consumed": 0.0
+    },
+    {
+      "label": "BITTER",
+      "pos": [
+        5.0,
+        -60.0,
+        1.5
+      ],
+      "visits": 0,
+      "dwell_s": 0.0,
+      "consumed": 0.0
+    }
+  ],
+  "mean_odour": 0.0003123395445803302,
+  "calibration": {
+    "intercept": 57.599999999999994,
+    "slope": 8.599999999999994,
+    "r2": 0.7302527646129553
+  },
+  "params": {
+    "orn_rate_max": 200.0,
+    "intensity_to_hz": 40000.0,
+    "contrast_gain": 55.0,
+    "dn_baseline_asym": 57.599999999999994,
+    "dn_asym_scale": 8.599999999999994,
+    "readout_tau_ms": 400.0,
+    "turn_gain": 0.8,
+    "base_drive": 1.0,
+    "action_clip": [
+      -0.5,
+      1.5
+    ],
+    "exchange_hz": 200.0
+  }
+}
